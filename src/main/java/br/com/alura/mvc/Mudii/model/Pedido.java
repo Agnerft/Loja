@@ -6,28 +6,34 @@ package br.com.alura.mvc.Mudii.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 @Entity
+@DynamicUpdate
 public class Pedido {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    
     private String nomeProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataDaEntrega;
+    @Column(length = 1000)
     private String urlProduto;
+    @Column(length = 1000)
     private String urlImagem;
     private String descricao;
     @Enumerated(EnumType.STRING)
-    public StatusPedido status;
+    private StatusPedido status;
     
     
     public String getNomeProduto() {
